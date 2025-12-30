@@ -3,7 +3,6 @@ describe('login test', () => {
   beforeEach(() => {
 
     cy.openPage()
-
     cy.url().should('include', '/')
   })
 
@@ -24,11 +23,17 @@ describe('login test', () => {
   })
 
   //  ---------   invalid login   --------- 
+  const INVALID_USER = 'test'
+  const INVALID_PASS = 'pass123'
+
   describe('Invalid login', () => {
 
     it('should not login with unregistered e-mail', () => {
 
-      cy.login('tes', Cypress.env('ADMIN_PASS'))
+      cy.login(
+        INVALID_USER,
+        Cypress.env('ADMIN_PASS')
+      )
 
       cy.get('p[class="oxd-text oxd-text--p oxd-alert-content-text"]')
         .should('be.visible')
@@ -38,12 +43,14 @@ describe('login test', () => {
 
       cy.get('button[type="submit"]')
         .should('be.visible')
-
     })
 
     it('should not login with unregistered password', () => {
 
-      cy.login(Cypress.env('ADMIN_USER'), '123456')
+      cy.login(
+        Cypress.env('ADMIN_USER'),
+        INVALID_PASS
+        )
 
       cy.get('p[class="oxd-text oxd-text--p oxd-alert-content-text"]')
         .should('be.visible')

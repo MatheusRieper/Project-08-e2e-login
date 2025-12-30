@@ -8,10 +8,7 @@ module.exports = defineConfig({
   },
 
   env: {
-  ADMIN_USER: 'Admin',
-  ADMIN_PASS: 'admin123'
-}
-
+    ADMIN_USER: 'Admin',
+    ADMIN_PASS: 'admin123'
+  }
 });
-
-
